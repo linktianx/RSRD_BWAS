@@ -1,23 +1,39 @@
 # =========================================
-# This script performs data preprocessing and Canonical Correlation Analysis (CCA) 
-# on HCP-YA dataset to identify associations between refined RSRD and behavioral measures.
+# Description:
+# This script performs data preprocessing and Canonical Correlation Analysis (CCA)
+# to identify associations between refined RSRD features and behavioral measures
+# in the HCP-YA dataset.
+#
+# -----------------------------------------
+# Input:
+#   - RSRD features (3D NumPy array): shape [n_subjects × n_ROIs × n_features]
+#   - Behavioral data (CSV): behavioral measures for HCP-YA participants
+#   - HCP-YA behavior info / categories: sourced from HCPwiki (https://wiki.humanconnectome.org/)
+#   - HCP-YA Family IDs (CSV): used for multi-level block permutation
+#   - Confound variables (CSV): including age, motion, and blood-derived measures
+#
+# Output:
+#   - CCA results
+#   - Fitted pipeline: used for downstream generalization analysis
 # =========================================
+
+
 import pandas as pd
-import warnings
 import numpy as np
+import warnings
+import os
 from sklearn.decomposition import PCA
-from sklearn.preprocessing import StandardScaler, PowerTransformer
+from sklearn.preprocessing import StandardScaler
 from sklearn.cross_decomposition import CCA as skCCA
 from scipy import stats
 import statsmodels.api as sm
 from tqdm import tqdm
-import os
-
 warnings.filterwarnings("ignore")
 
-# Configurable file paths
-DATA_PATH = '/share/user_data/tianx/HCTSA_RESUME'
-HCP_INFO_PATH = '/share/data/dataset/hcp_info'
+# ------------------------------------------------------------
+# Configurable file paths (update to user local paths)
+# ------------------------------------------------------------
+HCP_INFO_PATH = '/share/data/dataset/hcp_info'   # Path to  user local demographic and behavioral data
 
 def load_csv(file_path):
     """Utility function to load CSV files with file existence check."""
@@ -96,7 +112,22 @@ def clean_input_xy(y_df, x, behavior_list):
     return xdata_std, ydata_std, x_std_model, y_std_model
 
 def preproc_CCA(Xinp, Yinpdf, Cfdf, behavior_list, cf_list):
-    """Preprocess inputs for CCA, including confound regression and PCA on residuals."""
+    """
+    Preprocess input matrices for CCA:
+      - Confound regression
+      - PCA on residuals
+      - Standardization
+
+    Parameters:
+        Xinp (np.ndarray): RSRD features [n_subjects × n_ROIs × n_features]
+        Yinpdf (pd.DataFrame): Behavioral data
+        Cfdf (pd.DataFrame): Confound variables
+        behavior_list (list): Target behavioral measures
+        cf_list (list): List of confounds to regress out
+
+    Returns:
+        dict: Dictionary containing PCA inputs, models, residuals, etc.
+    """
     nsub, nroi, nf = Xinp.shape
     Xinp2d = Xinp.reshape(nsub, nroi * nf)
     xclean, yclean, x_std_model, _ = clean_input_xy(Yinpdf, Xinp2d, behavior_list)
@@ -140,16 +171,19 @@ def cca_analysis(inpdata, n_components=10, permutation=False):
         'varE': varE
     }
 
-# Load data and perform analysis
-df_behavior = load_csv(f'{DATA_PATH}/CCA/774subject_behavior_data.csv')
-cfdf = load_csv(f'{DATA_PATH}/CCA/774_subject_confunds_final.csv')
+# ----------------------------------------------------------------------------
+# Load data: behavior, confounds, RSRD features, behavioral variable list
+# ----------------------------------------------------------------------------
+df_behavior = load_csv(f'./774subject_behavior_data.csv')
+cfdf = load_csv(f'./774_subject_confunds_final.csv')
 cf_list = ['age', 'BPDiastolic', 'BPSystolic', 'HbA1C', 'Acquisitionint', 'fd_mean']
 cfdf['Family_ID'] = cfdf.groupby(['Mother_ID', 'Father_ID']).ngroup()
+RSRD_data = np.load(f'./CCA_fmat_X.npy')
+measures = load_csv(f'./hcp_behavior_list.csv')['variable'].values.tolist()
 
-RSRD_data = np.load(f'{DATA_PATH}/CCA/CCA_fmat_X.npy')
-measures = load_csv(f'{DATA_PATH}/CCA/hcp_behavior_list.csv')['variable'].values.tolist()
-
+# ----------------------------------------------------------------------------
 # Run CCA analysis with permutation
+# ----------------------------------------------------------------------------
 cca_input_dict = preproc_CCA(RSRD_data, df_behavior, cfdf, measures, cf_list)
 permu_corr, permu_varE = [], []
 Niter = 10000
@@ -161,7 +195,26 @@ for _ in tqdm(range(Niter)):
 np.save(f'{Niter}iter_per_family_corr', permu_corr)
 np.save(f'{Niter}iter_per_family_varE', permu_varE)
 
-# Save CCA results and input data
+# ----------------------------------------------------------------------------
+# Save  CCA results
+# ----------------------------------------------------------------------------
+# Run observed (non-permuted) CCA analysis
 cca_res = cca_analysis(cca_input_dict, permutation=False)
-np.save('CCA_res', cca_res)
-np.save('CCA_input', cca_input_dict)
+# Save results: CCA outputs and preprocessed input dictionary
+np.save('./CCA_res', cca_res)
+np.save('./CCA_input', cca_input_dict)
+
+# ----------------------------------------------------------------------------
+# Extract and save the fitted CCA processing pipeline
+# This includes:
+#   - StandardScaler used for feature normalization
+#   - PCA model used to reduce residualized features
+#   - CCA projection matrix (CCA projection weights for new data)
+# This object used for downstream generalization analyses
+# ----------------------------------------------------------------------------
+RSRD_CCA_HCPYA_PIPE = {
+    'StandardScaler': cca_input_dict['x_std_model'],
+    'PCA': cca_input_dict['x_pca_model'], 
+    'CCA_x_rotations_': cca_res['model'].x_rotations_  # CCA projection weights (used to project new data into the canonical space)
+}
+np.save('RSRD_CCA_HCPYA_PIPE', RSRD_CCA_HCPYA_PIPE)

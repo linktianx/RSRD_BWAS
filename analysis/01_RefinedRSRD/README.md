@@ -1,12 +1,22 @@
-#  RefinedRSRD
+#  RSRD profiles
 
-## Feature selection through ICC
-We selected these 44 features based on ICC analysis(RefinedRSRD/ICC.py) of 4945 time-series feature (Dense RSRD profiles) from four rfMRI scans. The data used for feature selection was derived from 100 blood-unrelated HCP-YA subjects, characterized by minimal head movement effects. 
+## Feature Extraction via [hctsa](https://github.com/benfulcher/hctsa)
+We performed time-series feature extraction using the hctsa toolbox in MATLAB R2020a. For installation and general usage, please refer to the official  
+[hctsa GitBook documentation](https://time-series-features.gitbook.io/hctsa-manual/), which provides comprehensive guidance.
 
-## Time-series features in Refined RSRD profiles
-The computation of these features is based on the [hctsa](https://github.com/benfulcher/hctsa) toolbox. Detailed information regarding these features is provided in the **Table S3**. 
-For the specific computation methods and references, please refer to the code and annotations officially provided by the [hctsa](https://github.com/benfulcher/hctsa/tree/main/Operations) toolbox.
+A demonstration script (`run_extract_rsrd.m`), built on a wrapper function (`extract_hctsa_features.m`), is provided to compute the 44 refined RSRD features used in our study. The demo is based on time-series data from 20 ROIs of a single HCP-YA participant and illustrates the complete extraction workflow, including data formatting, feature computation, and output interpretation.
 
+The wrapper function also supports full-set hctsa feature extraction (~7700 features);  see the function documentation for details.
+
+## Feature Selection via ICC
+
+The 44 RSRD features were selected based on intraclass correlation coefficient (ICC) analysis  (`ICC.py`) conducted on 4,945 time-series features (dense RSRD profiles) extracted from four rfMRI runs. The selection was based on data from 100 unrelated HCP-YA participants with minimal head motion (IDs provided in **Table S1** of the manuscript.)
+
+## Time-Series Features in Refined RSRD Profiles
+
+Descriptions of the specific feature computation methods and their source references can be found in the  
+[hctsa Operations directory](https://github.com/benfulcher/hctsa/tree/main/Operations).  
+Detailed annotations for the 44 selected features are also summarized in **Table S3** of the manuscript.
 
 **Table of the 44 features and their calculation methods** :
 

@@ -1,0 +1,160 @@
+variable,category
+FamHist_Moth_Dep,Health and Family History
+FamHist_Fath_Dep,Health and Family History
+FamHist_Fath_DrgAlc,Health and Family History
+FamHist_Moth_None,Health and Family History
+FamHist_Fath_None,Health and Family History
+MMSE_Score,Alertness
+PSQI_Score,Alertness
+PSQI_TooCold,Alertness
+PSQI_TooHot,Alertness
+PSQI_BadDream,Alertness
+PSQI_Pain,Alertness
+PicSeq_Unadj,Cognition
+CardSort_Unadj,Cognition
+Flanker_Unadj,Cognition
+PMAT24_A_CR,Cognition
+PMAT24_A_SI,Cognition
+PMAT24_A_RTCR,Cognition
+ReadEng_Unadj,Cognition
+PicVocab_Unadj,Cognition
+ProcSpeed_Unadj,Cognition
+DDisc_AUC_200,Cognition
+DDisc_AUC_40K,Cognition
+VSPLOT_TC,Cognition
+VSPLOT_CRTE,Cognition
+VSPLOT_OFF,Cognition
+SCPT_TPRT,Cognition
+SCPT_SEN,Cognition
+SCPT_SPEC,Cognition
+SCPT_LRNR,Cognition
+IWRD_TOT,Cognition
+IWRD_RTC,Cognition
+ListSort_Unadj,Cognition
+CogFluidComp_Unadj,Cognition
+CogEarlyComp_Unadj,Cognition
+CogTotalComp_Unadj,Cognition
+CogCrystalComp_Unadj,Cognition
+ER40_CR,Emotion
+ER40_CRT,Emotion
+ER40ANG,Emotion
+ER40FEAR,Emotion
+ER40HAP,Emotion
+ER40NOE,Emotion
+ER40SAD,Emotion
+AngAffect_Unadj,Emotion
+AngHostil_Unadj,Emotion
+AngAggr_Unadj,Emotion
+FearAffect_Unadj,Emotion
+FearSomat_Unadj,Emotion
+Sadness_Unadj,Emotion
+LifeSatisf_Unadj,Emotion
+MeanPurp_Unadj,Emotion
+PosAffect_Unadj,Emotion
+Friendship_Unadj,Emotion
+Loneliness_Unadj,Emotion
+PercHostil_Unadj,Emotion
+PercReject_Unadj,Emotion
+EmotSupp_Unadj,Emotion
+InstruSupp_Unadj,Emotion
+PercStress_Unadj,Emotion
+SelfEff_Unadj,Emotion
+Emotion_Task_Acc,In-Scanner Task Performance
+Gambling_Task_Perc_Larger,In-Scanner Task Performance
+Gambling_Task_Perc_Smaller,In-Scanner Task Performance
+Language_Task_Acc,In-Scanner Task Performance
+Relational_Task_Acc,In-Scanner Task Performance
+Social_Task_Perc_TOM,In-Scanner Task Performance
+WM_Task_Acc,In-Scanner Task Performance
+Endurance_Unadj,Sensory & Motor
+GaitSpeed_Comp,Sensory & Motor
+Dexterity_Unadj,Sensory & Motor
+Strength_Unadj,Sensory & Motor
+NEOFAC_A,Personality
+NEOFAC_O,Personality
+NEOFAC_C,Personality
+NEOFAC_N,Personality
+NEOFAC_E,Personality
+ASR_Anxd_Raw,Psychiatric and Life Function
+ASR_Witd_Raw,Psychiatric and Life Function
+ASR_Soma_Raw,Psychiatric and Life Function
+ASR_Thot_Raw,Psychiatric and Life Function
+ASR_Attn_Raw,Psychiatric and Life Function
+ASR_Aggr_Raw,Psychiatric and Life Function
+ASR_Rule_Raw,Psychiatric and Life Function
+ASR_Intr_Raw,Psychiatric and Life Function
+ASR_Oth_Raw,Psychiatric and Life Function
+ASR_Crit_Raw,Psychiatric and Life Function
+ASR_Intn_Raw,Psychiatric and Life Function
+ASR_Intn_T,Psychiatric and Life Function
+ASR_Extn_Raw,Psychiatric and Life Function
+ASR_Extn_T,Psychiatric and Life Function
+ASR_TAO_Sum,Psychiatric and Life Function
+ASR_Totp_Raw,Psychiatric and Life Function
+ASR_Totp_T,Psychiatric and Life Function
+DSM_Depr_Raw,Psychiatric and Life Function
+DSM_Anxi_Raw,Psychiatric and Life Function
+DSM_Somp_Raw,Psychiatric and Life Function
+DSM_Avoid_Raw,Psychiatric and Life Function
+DSM_Adh_Raw,Psychiatric and Life Function
+DSM_Inat_Raw,Psychiatric and Life Function
+DSM_Hype_Raw,Psychiatric and Life Function
+DSM_Antis_Raw,Psychiatric and Life Function
+SSAGA_ChildhoodConduct,Psychiatric and Life Function
+SSAGA_PanicDisorder,Psychiatric and Life Function
+SSAGA_Agoraphobia,Psychiatric and Life Function
+SSAGA_Depressive_Ep,Psychiatric and Life Function
+SSAGA_Depressive_Sx,Psychiatric and Life Function
+Odor_Unadj,Sensory & Motor
+PainInterf_Tscore,Sensory & Motor
+Taste_Unadj,Sensory & Motor
+EVA_Denom,Sensory & Motor
+Correction,Sensory & Motor
+Mars_Log_Score,Sensory & Motor
+Mars_Final,Sensory & Motor
+Total_Drinks_7days,Substance Use
+Num_Days_Drank_7days,Substance Use
+Avg_Weekday_Drinks_7days,Substance Use
+Avg_Weekend_Drinks_7days,Substance Use
+Total_Beer_Wine_Cooler_7days,Substance Use
+Avg_Weekday_Beer_Wine_Cooler_7days,Substance Use
+Avg_Weekend_Beer_Wine_Cooler_7days,Substance Use
+Total_Wine_7days,Substance Use
+Avg_Weekday_Wine_7days,Substance Use
+Avg_Weekend_Wine_7days,Substance Use
+Total_Hard_Liquor_7days,Substance Use
+Avg_Weekend_Hard_Liquor_7days,Substance Use
+SSAGA_Alc_D4_Dp_Sx,Substance Use
+SSAGA_Alc_D4_Ab_Dx,Substance Use
+SSAGA_Alc_D4_Ab_Sx,Substance Use
+SSAGA_Alc_D4_Dp_Dx,Substance Use
+SSAGA_Alc_12_Drinks_Per_Day,Substance Use
+SSAGA_Alc_12_Frq,Substance Use
+SSAGA_Alc_12_Frq_5plus,Substance Use
+SSAGA_Alc_12_Frq_Drk,Substance Use
+SSAGA_Alc_12_Max_Drinks,Substance Use
+SSAGA_Alc_Age_1st_Use,Substance Use
+SSAGA_Alc_Hvy_Drinks_Per_Day,Substance Use
+SSAGA_Alc_Hvy_Frq,Substance Use
+SSAGA_Alc_Hvy_Frq_5plus,Substance Use
+SSAGA_Alc_Hvy_Frq_Drk,Substance Use
+SSAGA_Alc_Hvy_Max_Drinks,Substance Use
+Total_Any_Tobacco_7days,Substance Use
+Times_Used_Any_Tobacco_Today,Substance Use
+Num_Days_Used_Any_Tobacco_7days,Substance Use
+Avg_Weekday_Any_Tobacco_7days,Substance Use
+Avg_Weekend_Any_Tobacco_7days,Substance Use
+Total_Cigarettes_7days,Substance Use
+Avg_Weekday_Cigarettes_7days,Substance Use
+Avg_Weekend_Cigarettes_7days,Substance Use
+SSAGA_TB_Smoking_History,Substance Use
+SSAGA_TB_Still_Smoking,Substance Use
+SSAGA_Times_Used_Illicits,Substance Use
+SSAGA_Times_Used_Cocaine,Substance Use
+SSAGA_Times_Used_Hallucinogens,Substance Use
+SSAGA_Times_Used_Opiates,Substance Use
+SSAGA_Times_Used_Sedatives,Substance Use
+SSAGA_Times_Used_Stimulants,Substance Use
+SSAGA_Mj_Use,Substance Use
+SSAGA_Mj_Ab_Dep,Substance Use
+SSAGA_Mj_Times_Used,Substance Use

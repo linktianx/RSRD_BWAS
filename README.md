@@ -1,27 +1,61 @@
 # RSRD_BWAS
 
-This repository provides the code supporting the manuscript entitled *"Spontaneous Brain Regional Dynamics Contribute to Generalizable Brain-Behavior Associations."* 
-Core code is currently available to facilitate review.
+This repository contains code supporting the manuscript
+“Spontaneous Brain Regional Dynamics Contribute to Generalizable Brain–Behavior Associations.”
 
-## Data/resources
+---
 
-The analysis uses preprocessed rs-fMRI data and behavioral measures from the following studies:
-- **HCP-YA**: Establishment of primary findings
-- **HCP-D / UK Biobank**: Validation in independent populations
+## Data / Resources
+The analyses were performed using preprocessed resting-state fMRI data and behavioral measures from the following datasets:
+- **HCP-YA**: Primary analyses  
+  (Refined RSRD features based on test–retest reliability; identification of two brain–behavior association modes)
+- **HCP-D / MSC**: Reliability validation of refined RSRD features
+- **HCP-D / UK Biobank**: Generalization of brain–behavior associations to external datasets
 
+---
 
-## Code 
+Scripts are organized into four subfolders that correspond to the order of analyses reported in the manuscript.
 
-### Regional rs-fMRI BOLD Time-Series Feature Extraction
-- **hctsa toolbox**: Used for extracting time-series features. For more information, see the [hctsa GitHub repository](https://github.com/benfulcher/hctsa) and the [hctsa manual](https://time-series-features.gitbook.io/hctsa-manual).
+- [`01_RefinedRSRD`](./analysis/01_RefinedRSRD/):  
+  Extraction, refinement, and description of RSRD profiles.  
+  The script `extract_hctsa_features.m` extracts RSRD features using the [hctsa toolbox](https://github.com/benfulcher/hctsa).  
+  Users may choose to compute either the full hctsa feature set (~7700 features) or the 44 refined features used in this study (as defined in `INP_ops_RSRD44.txt`).  
+  A demo using a small subset of time series is included.  
+  The script `ICC.py` identifies high-reliability features based on test–retest intraclass correlation coefficients (ICCs).  
+  For more details, see the subfolder’s `README.md`.
 
-### refinedRSRD
-- **ICC.py**: Identifies high-reliability features for analysis.
-- **README.md**: Details the computation of 44 time-series features in refinedRSRD profiles, with links to the corresponding hctsa package functions.
+- [`02_CCAHCP`](./analysis/02_CCAHCP/):  
+  Performs Canonical Correlation Analysis (CCA) to identify brain–behavior associations in HCP-YA participants.  
+  Input includes RSRD matrices (271 regions × 44 features) and 159 behavioral measures.  
+  A list of behavioral variables is provided in `hcp_behavior_list.csv`.
 
-### CCAanalysis
-- **CCAHCP.py**: Analyzes brain-behavior associations in HCP-YA participants using Canonical Correlation Analysis (CCA).
+- [`03_CCAgeneralization`](./analysis/03_CCAgeneralization/):  
+    Generalizes the CCA-based brain–behavior associations established in HCP-YA to independent datasets (HCP-D and UK Biobank).
+    The script latent_score.py applies the pre-trained CCA pipeline to external RSRD matrices to generate individualized latent scores.
+    The scripts hcpd_validation.py and ukbb_validation.py perform partial correlation analyses between latent scores and behavioral measures. Prior to the association analyses, these scripts also include procedures for identifying and preprocessing the target behavioral phenotypes from the respective databases.
 
-### CCAgeneralization
-- **PBS.py**: Computes a cumulative score reflecting externalizing problems and cognitive mode-related regional brain activity patterns in HCP-D and UK Biobank participants.
-- **UKB_Externalizing_Problems.py**: Processes behavioral phenotypes related to externalizing problems for the UK Biobank cohort, following the guidelines of Aydogan et al., *Nat Hum Behav*, 5, 787–794 (2021).
+- [`04_spatiotemporal_patterns`](./analysis/04_spatiotemporal_patterns/):  
+  Cross-cohort analyses of the spatiotemporal patterns underlying each brain–behavior mode.  
+  Includes permutation testing based on spatial autocorrelation-preserving null models using the BrainSMASH framework.
+
+---
+
+## Requirements
+Computation of RSRD features was performed using the **[hctsa toolbox](https://github.com/benfulcher/hctsa)** in **MATLAB 2020a**. For installation and usage, refer to the [official hctsa manual](https://time-series-features.gitbook.io/hctsa-manual).
+
+All statistical analyses were conducted in **Python 3.6.13**.  
+The following packages are required:
+```
+pandas==1.1.5
+numpy==1.19.5
+scipy==1.5.4
+pingouin==0.3.12
+scikit-learn==0.24.2
+seaborn==0.9.0
+altair==4.1.0
+statsmodels==0.12.2
+statannotations==0.6.0
+brainsmash==0.11.0
+```
+
+You may also install these dependencies using the provided `requirements.txt` file
