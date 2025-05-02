@@ -5,13 +5,12 @@ This repository contains code supporting the manuscript
 
 ---
 
-## Data / Resources
+## Overview
 The analyses were performed using preprocessed resting-state fMRI data and behavioral measures from the following datasets:
 - **HCP-YA**: Primary analyses  
   (Refined RSRD features based on test–retest reliability; identification of two brain–behavior association modes)
 - **HCP-D / MSC**: Reliability validation of refined RSRD features
 - **HCP-D / UK Biobank**: Generalization of brain–behavior associations to external datasets
-
 ---
 
 ## Analysis
