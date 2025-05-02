@@ -14,6 +14,7 @@ The analyses were performed using preprocessed resting-state fMRI data and behav
 
 ---
 
+## Analysis
 Scripts are organized into four subfolders that correspond to the order of analyses reported in the manuscript.
 
 - [`01_RefinedRSRD`](./analysis/01_RefinedRSRD/):  
