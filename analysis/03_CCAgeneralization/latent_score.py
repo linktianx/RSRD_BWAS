@@ -1,6 +1,6 @@
 # ==============================================================================
 # Description:
-# This script applies a pre-trained CCA pipeline to extract latent brain–behavior 
+# This script applies a pre-trained CCA pipeline to extract latent  
 # scores from RSRD features in the HCP-D and UK Biobank datasets.
 # ==============================================================================
 
