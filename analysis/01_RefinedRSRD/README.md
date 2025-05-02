@@ -1,12 +1,9 @@
 #  RSRD profiles
 
 ## Feature Extraction via [hctsa](https://github.com/benfulcher/hctsa)
-We performed time-series feature extraction using the hctsa toolbox in MATLAB R2020a. For installation and general usage, please refer to the official  
-[hctsa GitBook documentation](https://time-series-features.gitbook.io/hctsa-manual/), which provides comprehensive guidance.
+We performed time-series feature extraction using the hctsa toolbox in MATLAB R2020a. For installation and general usage, please refer to the official [hctsa GitBook documentation](https://time-series-features.gitbook.io/hctsa-manual/), which provides comprehensive guidance.
 
-A demonstration script (`run_extract_rsrd.m`), built on a wrapper function (`extract_hctsa_features.m`), is provided to compute the 44 refined RSRD features used in our study. The demo is based on time-series data from 20 ROIs of a single HCP-YA participant and illustrates the complete extraction workflow, including data formatting, feature computation, and output interpretation.
-
-The wrapper function also supports full-set hctsa feature extraction (~7700 features);  see the function documentation for details.
+A demonstration script (`run_extract_rsrd.m`), built on a wrapper function (`extract_hctsa_features.m`), is provided to compute the 44 refined RSRD features used in our study. The demo is based on time-series data from 20 ROIs of a single HCP-YA participant and illustrates the complete extraction workflow, including data formatting, feature computation, and output interpretation. The wrapper function also supports full-set hctsa feature extraction (~7700 features);  see the function documentation for details.
 
 ## Feature Selection via ICC
 
