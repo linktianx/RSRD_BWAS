@@ -93,7 +93,7 @@ hcpd_latent = extract_latent_scores(hcpd_rsrd, RSRD_CCA_HCPYA_PIPE)
 
 # Saving
 hcpd_latent_df = pd.DataFrame({
-    'subjectID': hcpd_subject_ids,
+    'src_subject_id': hcpd_subject_ids,
     'm1s': hcpd_latent[:, 0],  # First CCA score
     'm2s': hcpd_latent[:, 1]   # Second CCA score
 })
@@ -112,7 +112,7 @@ ukb_rsrd_flattened = ukb_rsrd.reshape(nsubj, nrois * nfeatures)
 # Apply the pre-trained pipeline to extract latent canonical scores
 ukb_latent = extract_latent_scores(ukb_rsrd_flattened, RSRD_CCA_HCPYA_PIPE)
 ukb_latent_df = pd.DataFrame({
-    'subjectID': ukb_eids,
+    'eid': ukb_eids,
     'm1s': ukb_latent[:, 0],  
     'm2s': ukb_latent[:, 1] 
 })
