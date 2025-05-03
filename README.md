@@ -1,7 +1,7 @@
 # RSRD_BWAS
 
 This repository contains code supporting the manuscript
-“Spontaneous Brain Regional Dynamics Contribute to Generalizable Brain–Behavior Associations.”
+“Spontaneous Brain Regional Dynamics Contribute to Generalizable Brain-Behavior Associations.”
 
 ---
 
