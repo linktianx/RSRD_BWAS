@@ -1,4 +1,4 @@
-function [] = extract_hctsa_features(data_id, data_dir, feature_set, ops_file, use_parallel, num_workers)
+function [] = extract_hctsa_features(data_id, data_dir, feature_set, ops_file, use_parallel)
 % extract_hctsa_features:
 % Converts a .mat matrix of time series into hctsa format, initializes metadata,
 % and computes time-series features using the hctsa framework.
@@ -11,10 +11,9 @@ function [] = extract_hctsa_features(data_id, data_dir, feature_set, ops_file, u
 %                    * 'RSRD44'  — extract the 44 features used in our study
 %   - ops_file      : Path to the operations file (required only if feature_set ≠ 'all')
 %   - use_parallel  : Logical flag indicating whether to use parallel processing
-%   - num_workers   : Number of workers for the parallel pool
-%
+
 % Example:
-% extract_hctsa_features('sub01', './data', 'RSRD44', './ops/ops_RSRD44.txt', true, 4)
+% extract_hctsa_features('sub01', './data', 'RSRD44', './ops/ops_RSRD44.txt', true)
 
 % =========================================================================
 % IMPORTANT: Please update the following line to match the path to your
@@ -59,6 +58,7 @@ output_file = fullfile(data_dir, strcat(data_id, feature_set, '_OUT.mat'));
 
 if strcmpi(feature_set, 'all') % hctsa full set
     TS_Init(init_file, 'INP_mops.txt', 'INP_ops.txt', false, output_file);
+    % ref to : https://github.com/benfulcher/hctsa/blob/main/Calculation/TS_Init.m
 else
     if ~isfile(ops_file)
         error('Specified operations file not found: %s', ops_file);
@@ -70,7 +70,8 @@ fprintf('[INFO] Initialized OUT file: %s\n', output_file);
 % -------------------------------------------------------------------------
 % Compute features using hctsa
 % -------------------------------------------------------------------------
-TS_Compute(use_parallel, num_workers, [], [], [], output_file, false);
+TS_Compute(use_parallel, [], [], [], output_file, false);
+% ref to : https://github.com/benfulcher/hctsa/blob/main/Calculation/TS_Compute.m
 
 fprintf('[INFO] Feature extraction complete: %s\n', output_file);
 
